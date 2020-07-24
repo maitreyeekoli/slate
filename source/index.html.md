@@ -1,16 +1,6 @@
 ---
 title: API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
 includes:
   - errors
 
@@ -18,224 +8,408 @@ search: true
 
 code_clipboard: true
 ---
-
-# Introduction
-
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+# Sold Plan
+### createSoldPlan
+This API is used for creating new contract for consumer. Creates a contract for the provided customer and device.
+********************
+>**Sample cURL:**
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl --location --request POST '<https://clientstag.servify.tech/primePublicApi/api/v1/SoldPlan/createSoldPlan'> '\ <br>
+--header 'Content-Type: application/json' \
+--header 'client-id: <CLIENT_ID>' \
+--header 'hmac-signature: <HMAC_SIGNATURE>' \
+--header 'x-date: <DATE>' \
+--header 'x-host: <CLIENT_HOST.COM>' \
+--header 'client-session-id: <CLIENT_SESSION_ID>'   \
+--data-raw '{ "$data":"<ENCRYPTED_DATA>" }'
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+>**Decrypted Request Body:**
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+{
+    "ExternalReferenceID":"IND20D1775222344",
+    "ProductUniqueID":"3569054353457",
+    "SerialNumber":"hdgse356hs73h92b",
+    "AlternateUniqueKey":"hfjshsh2345677w2233",
+    "DeviceDateOfPurchase":"2020-06-15",
+    "CustomerName":"Test",
+    "PhoneCode":"91",
+    "CountryCode":"IN",
+    "MobileNo":"9098000000",
+    "EmailID":"abc@gmail.com",
+    "AlternateMobileNo":"9890111111",
+    "BrandName":"Samsung",
+    "ProductName":"Galaxy Note 10",
+    "DateOfPurchase":"2020-02-21",
+    "ExternalPlanCode":"INDSTG20200131234543",
+    "ProductSubCategory":"Smartphone",
+    "State":"Maharastra",
+    "Zipcode":400093,
+    "SalesChannel":"Samsung",
+    "PartnerServiceLocationID":"4"
   }
-]
-```
+ ```
 
-This endpoint retrieves all kittens.
+**Request Parameter Description**<br>
 
-### HTTP Request
+**ExternalReferenceID** - String <br>
+External reference ID of plan, it is client referenceid of plan
 
-`GET http://example.com/api/kittens`
+**ProductUniqueID** - String <br>
+IMEI Number of device
 
-### Query Parameters
+**SerialNumber** - String <br>
+Serial number of device
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+**AlternateUniqueKey** - String <br>
+Device's second IMEI number
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+**DeviceDateOfPurchase** - String <br>
+Device date of purchase, date format is YYYY-MM-DD
 
-## Get a Specific Kitten
+**CustomerName** - String <br>
+Customer name who has purchased the plan
 
-```ruby
-require 'kittn'
+**PhoneCode** - String <br>
+Customer phone number's country code
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+**CountryCode** - String <br>
+Country code of customer
 
-```python
-import kittn
+**MobileNo** - String <br>
+Mobile number of customer
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+**EmailID** - String <br>
+Email address of customer
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+**AlternateMobileNo** - String <br>
+Alternate mobile number of customer
 
-```javascript
-const kittn = require('kittn');
+**BrandName** - String <br>
+Brand name of customer device
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
+**ProductName** - String <br>
+Product name of customer device
 
-> The above command returns JSON structured like this:
+**DateOfPurchase** - String <br>
+Plan purchase date, date format is YYYY-MM-DD
 
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
+**ExternalPlanCode** - String <br>
+External plan code, it is client's unique plan code
 
-This endpoint retrieves a specific kitten.
+**ProductSubCategory** - String <br>
+Device product sub category, which is provided by Servify
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+**State** - String <br>
+Customer's state
 
-### HTTP Request
+**Zipcode** - String <br>
+Customer's zipcode
 
-`GET http://example.com/kittens/<ID>`
+**SalesChannel** - String <br>
+Plan sale source, which is provided by Servify
 
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+**PartnerServiceLocationID** - String <br>
+Service center ID, which is provided by Servify
+***
+>**Encrypted Response :**
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+    "$data": "<ENCRYPTED_RESPONSE>"
+}
+```
+***
+>**Decrypted Response Body:**
+
+```json
+{
+  "status": 200,
+  "success": true,
+  "message": "Success",
+  "data": {
+      "InvoiceNo": "SLT/20-21/Plan/12244222",
+      "SoldPlanCode": "M345DERT"
+  }
+}
+```
+**Response Object Parameters**
+
+**status** - Number <br>
+HTTP status code of the request
+
+**success** - Boolean <br>
+Value can be true/false. This will represent the success or failure of the API execution
+
+**message** - String <br>
+A meaningful, end-user-readable (or at the least log-worthy) message, explaining what went wrong
+
+**data** - Object<br>
+Contains the response payload
+***
+**Children attributes**
+**InvoiceNo** - String <br>
+Invoice number of created plan in Servify
+
+**SoldPlanCode** - String
+Plan code of Servify
+
+
+### updatePlan
+This API is used to update plan details.
+
+>**Sample cURL:**
+
+```shell
+curl --location --request POST '<https://clientstag.servify.tech/primePublicApi/api/v1/SoldPlan/updatePlan'> \
+--header 'Content-Type: application/json' \
+--header 'client-id: <CLIENT_ID>' \
+--header 'hmac-signature: <HMAC_SIGNATURE>' \
+--header 'x-date: <DATE>' \
+--header 'x-host: <CLIENT_HOST.COM>' \
+--header 'client-session-id: <CLIENT_SESSION_ID>' \
+--data-raw '{ "$data":"<ENCRYPTED_DATA>" }'
+```
+>**Decrypted Request Body:**
+
+```json
+{
+    "OrderNumber": "SLT/20-21/Plan/S00030823",
+    "ResponseCode": 1
+}
+```
+**Request Parameter Description**<br>
+
+**OrderNumber** - String <br>
+Invoice number, which was shared in "createSoldPlan" API response by Servify.
+
+**ResponseCode** - Number<br>
+Need to determine plan is created or not in client system, its value will be 1 for success or 0 for fail. It will be update in Servify system.
+
+>**Decrypted Response Body:**
+
+```json
+{
+    "success": true,
+    "code": "aegis_441",
+    "msg": "Order updated",
+    "data": {
+        "InvoiceNo": "SLT/20-21/Plan/S00030870",
+        "PurchaseFailure": true 
+    }
 }
 ```
 
-This endpoint deletes a specific kitten.
+**Response Object Parameters** <br>
 
-### HTTP Request
+**code** - String <br>
+Response code from Servify (can be ignored by client)
 
-`DELETE http://example.com/kittens/<ID>`
+**success** - Boolean <br>
+Value can be true/false. This will represent the success or failure of the API execution
 
-### URL Parameters
+**msg** - String <br>
+A meaningful, end-user-readable (or at the least log-worthy) message, explaining what went wrong
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+**data** - Object <br>
+Contains the response payload
+
+**Child attributes of data object:**
+
+**InvoiceNo** - String <br>
+Invoice number of plan
+
+**PurchaseFailure** - Boolean <br>
+In Servify system plan is the purchase or not flag, if the value is true means successfully purchase or value is false means failed to purchase
+
+
+# TradeIn
+### getBrands
+This API is used to get a brand list which is registered in Servify's system for the client.
+
+********
+>**Sample cURL:**
+
+```shell
+curl --location --request POST '<https://clientstag.servify.tech/primePublicApi/api/v1/TradeIn/getBrands'> \
+--header 'Content-Type: application/json' \
+--header 'client-id: <CLIENT_ID>' \
+--header 'hmac-signature: <HMAC_SIGNATURE>' \
+--header 'x-date: <DATE>' \
+--header 'x-host: <CLIENT_HOST.COM>' \
+--header 'client-session-id: <CLIENT_SESSION_ID>' \
+--data-raw '{ "$data":"<ENCRYPTED_DATA>" }'
+```
+
+>**Decrypt Request Body:**
+
+```json
+{
+    "partner": "Servify Partner"
+}
+```
+
+**Request Parameter Description**
+
+**partner** - String
+Partner name which is provided by Servify during integration.
+
+>**Encrypted Response :**
+
+```json
+{
+    "$data": "<ENCRYPTED_RESPONSE>"
+}
+```
+
+***
+
+>**Decrypted Response Body:**
+
+```json
+{
+    "data": {
+        "brands": [{
+            "brandName": "Apple"
+        }, {
+            "brandName": "LGE"
+        }, {
+            "brandName": "Motorola"
+        }, {
+            "brandName": "Nokia"
+        }, {
+            "brandName": "OnePlus"
+        }, {
+            "brandName": "Samsung"
+        }, {
+            "brandName": "Sony"
+        }]
+    },
+    "statusCode": "SFY.TI.2000",
+    "message": "success"
+}
+```
+
+**Response Object Parameters** <br>
+
+**data** - Object <br>
+Contains the response payload.
+
+***
+**Child attributes of data object:**
+
+**brands** - Array of objects <br>
+It is an array of brands.
+
+***
+**Child attributes of brands object:**
+
+**brandName** - String <br>
+Name of the brand
+
+**statusCode** - String <br>
+Status code of request-response
+
+**message** - String <br>
+A meaningful, end-user-readable (or at the least log-worthy) message, explaining what went wrong.
+
+
+
+## getProducts
+This API is used to get a product list which is registered in Servify's system for the client
+
+***
+
+>**Sample cURL:**
+
+```shell
+curl --location --request POST '<https://clientstag.servify.tech/primePublicApi/api/v1/TradeIn/getProducts'> \
+--header 'Content-Type: application/json' \
+--header 'client-id: <CLIENT_ID>' \
+--header 'hmac-signature: <HMAC_SIGNATURE>' \
+--header 'x-date: <DATE>' \
+--header 'x-host: <CLIENT_HOST.COM>' \
+--header 'client-session-id: <CLIENT_SESSION_ID>' \
+--data-raw '{ "$data":"<ENCRYPTED_DATA>" }'
+```
+
+>**Decrypt Request Body:**
+
+```json
+{
+    "partner": "Servify Partner"
+}
+```
+
+**Request Parameter Description**
+
+**partner** - String <br>
+Partner name which is provided by Servify during integration.
+
+>**Encrypted Response :**
+
+```json
+{
+    "$data": "<ENCRYPTED_RESPONSE>"
+}
+```
+
+>**Decrypted Response Body:**
+
+```json
+{
+    "data": {
+        "productDetails": [{
+                "brandName": "Apple",
+                "products": [{
+                    "productName": "iPhone 6"
+                }]
+            },
+            {
+                "brandName": "Samsung",
+                "products": [{
+                    "productName": "Galaxy S7 edge"
+                }]
+            }
+        ]
+    },
+    "statusCode": "SFY.TI.2000",
+    "message": "success"
+}
+```
+
+**Response Object Parameters**
+
+**statusCode** - String <br>
+Status code of request-response
+
+**message** - String <br>
+A meaningful, end-user-readable (or at the least log-worthy) message, explaining what went wrong
+
+**data** - Object <br>
+Contains the response payload
+
+***
+**Child attributes of data object:**
+
+**productDetails** - Array of objects <br>
+Product details of brands
+
+***
+**Child attributes of productDetails object:**
+
+**brandName** - String <br>
+Brand name of the product
+
+**products** - Array of objects <br>
+Product list of brand
+
+***
+**Child attributes of products object:**
+
+**productName** - String <br>
+Product name of the brand.
+
+***
 

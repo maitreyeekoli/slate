@@ -135,6 +135,7 @@ dfn {
 h1 {
     font-size: 2em;
     margin: 0.67em 0;
+    color: #5037c2
 }
 
 /**
@@ -209,9 +210,10 @@ figure {
  */
 
 hr {
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    height: 0;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+    color: rgb(0, 0, 0);
+
 }
 
 /**
